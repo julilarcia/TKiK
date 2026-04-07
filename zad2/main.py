@@ -1,11 +1,20 @@
 from lexer import Lexer
-def main():
+from highlighter import highlight, wrap_html
 
-    text = '123 ; 11  ; "udjsd" //kom '
-    lexer = Lexer(text)
+
+def main():
+    with open("input.txt", "r", encoding="utf-8") as f:
+        code = f.read()
+
+    lexer = Lexer(code)
     tokens = lexer.tokenize()
-    for token in tokens:
-        print(f"Typ: {token.type:<12} Wartość: '{token.value}'")
+
+    colored = highlight(tokens)
+    html = wrap_html(colored)
+
+    with open("output.html", "w", encoding="utf-8") as f:
+        f.write(html)
+
 
 if __name__ == "__main__":
     main()

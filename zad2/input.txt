@@ -1,0 +1,6 @@
+//przyklad
+int x = 10
+
+if (x > 5) {
+    var y = "hello"
+}
